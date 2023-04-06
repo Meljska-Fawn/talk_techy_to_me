@@ -1,0 +1,14 @@
+{{#if posts.length}}
+<ul>
+  {{!-- needs to match const variable in postRoutes.js --}}
+  {{#each posts as |post|}}
+  <li>
+    <h2>{{post.title}}</h2>
+    <p>Created by {{post.user.name}} on {{format_date post.date_created}}</p>
+    <a href="/posts/{{post.id}}">Read More</a>
+  </li>
+  {{/each}}
+</ul>
+{{else}}
+<p>No posts yet.</p>
+{{/if}}

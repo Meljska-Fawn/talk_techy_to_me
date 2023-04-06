@@ -1,0 +1,7 @@
+{{#if loggedIn}}
+<form method="POST" action="/posts/{{post.id}}/comments">
+    <h2>Add a Comment</h2>
+    <textarea placeholder='Enter comment here...' name="new-comment"></textarea>
+    <button type="submit">Submit</button>
+</form>
+{{/if}}
