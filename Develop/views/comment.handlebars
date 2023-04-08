@@ -1,7 +1,8 @@
 {{#if loggedIn}}
-<form method="POST" action="/posts/{{post.id}}/comments">
+<form id="comment-form" method="POST" action="/posts/{{post.id}}/comments">
     <h2>Add a Comment</h2>
-    <textarea placeholder='Enter comment here...' name="new-comment"></textarea>
-    <button type="submit">Submit</button>
+    <textarea placeholder='Enter comment here...' name="new-comment" id="new-comment"></textarea>
+    <button id="submit-button" type="submit">Submit</button>
 </form>
+<script src="/js/addComment.js"></script>
 {{/if}}
