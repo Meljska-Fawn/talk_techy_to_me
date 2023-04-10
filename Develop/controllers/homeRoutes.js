@@ -1,21 +1,24 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
-// is with middleware to prevent access to route. 
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const userData = await User.findAll({
-            attributes: { exclude: ['password'] },
-            order: [['name', 'ASC']],
-            include: [{ model: Post }],
+        // get all posts and JOIN with user data
+        const postData = await Post.findAll({
+            include: [
+                {
+                    model: User,
+                    attributes: ['name'],
+                },
+            ],
         });
-// serialize data so the template can read it. get the project.js json model data. users need to match the homepage 
-        const users = userData.map((project) => project.get({ plain: true }));
+        // serialize data so the template can read it. get the project.js json model data. users need to match the homepage 
+        const posts = postData.map((post) => post.get({ plain: true }));
 
-// pass serialized data and session flag into template
+        // pass serialized data and session flag into template
         res.render('homepage', {
-            users,
+            posts,
             logged_in: req.session.logged_in,
         });
     } catch (err) {
@@ -30,6 +33,40 @@ router.get('/login', (req, res) => {
     }
 
     res.render('login');
+});
+
+router.get('/signup', (req, res) => {
+    res.render('signup');
+});
+
+// create a route to get a single post
+router.get('/post/:id', async (req, res) => {
+    try {
+        const postData = await Post.findbyPk(req.params.id, {
+            include: [
+                {
+                    model: User,
+                    attributes: ['name'],
+                },
+            ],
+        });
+
+        if (!postData) {
+            res.status(404).json({ message: 'No post found with this id' });
+            return;
+        }
+
+        // serialize the data so the template can read it
+        const post = dbPostData.get({ plain: true });
+
+        // pass data to template
+        res.render('post', {
+            ...post,
+            loggedIn: req.session.loggedIn
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    };
 });
 
 module.exports = router;
