@@ -1,4 +1,4 @@
-async function commentFormHandler(event) {
+const commentFormHandler = async (event) => {
     event.preventDefault();
 
     const content = document.querySelector('#new-comment').value.trim();
@@ -10,10 +10,7 @@ async function commentFormHandler(event) {
     if (content) {
         const response = await fetch('/api/comments', {
             method: 'POST',
-            body: JSON.stringify({
-                post_id,
-                content
-            }),
+            body: JSON.stringify({ post_id, content }),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -21,7 +18,7 @@ async function commentFormHandler(event) {
         if (response.ok) {
             document.location.reload();
         } else {
-            alert(response.statusText)
+            alert(response.statusText);
         }
     }
 }
