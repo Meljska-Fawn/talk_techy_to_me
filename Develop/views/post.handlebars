@@ -1,7 +1,7 @@
 <div class="text-center">
-    <h1>{{title}}</h1>
-    <h2>Posted by {{user.name}} on {{format_date date_created}}</h2>
-    <p>{{content}}</p>
+    <h1>{{post.title}}</h1>
+    <h2>Posted by {{post.user.username}} on {{format_date post.date_created}}</h2>
+    <p>{{post.content}}</p>
     <p>
         <button class="btn btn-primary"><a href="./comment.handlebars">Leave a Comment</a></button>
     </p>
@@ -12,8 +12,8 @@
         {{#each comments as |comment|}}
         <li>
             <p>{{comment.content}}</p>
-            <p>{{format_date date_created}}</p>
-            <p>By: {{post.user.name}}</p>
+            <p>{{format_date comment.date_created}}</p>
+            <p>By: {{post.user.username}}</p>
         </li>
         {{/each}}
     </ul>
