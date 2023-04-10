@@ -31,7 +31,6 @@ router.get('/login', (req, res) => {
         res.redirect('/');
         return;
     }
-
     res.render('login');
 });
 
@@ -55,18 +54,39 @@ router.get('/post/:id', async (req, res) => {
             res.status(404).json({ message: 'No post found with this id' });
             return;
         }
-
         // serialize the data so the template can read it
-        const post = dbPostData.get({ plain: true });
-
+        const post = postData.get({ plain: true });
         // pass data to template
         res.render('post', {
             ...post,
-            loggedIn: req.session.loggedIn
+            logged_in: req.session.logged_in
         });
     } catch (err) {
         res.status(500).json(err);
     };
+});
+
+router.get('/edit/:id', withAuth, async (req, res) => {
+    try {
+        const postData = await Post.findbyPk(req.params.id, {
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'],
+                }]
+        });
+        if (!postData) {
+            res.status(404).json({ message: 'No post found with this id.' });
+            return;
+        }
+        const post = postData.get({ plain: true });
+        res.render('edit-post', {
+            post,
+            logged_in: req.session.logged_in
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 module.exports = router;
