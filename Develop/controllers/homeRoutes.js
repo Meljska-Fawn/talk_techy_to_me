@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
             include: [
                 {
                     model: User,
-                    attributes: ['name'],
+                    attributes: ['username'],
                 },
             ],
         });
@@ -45,7 +45,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
             include: [
                 {
                     model: User,
-                    attributes: ['name'],
+                    attributes: ['username'],
                 },
             ],
         });
@@ -65,5 +65,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
         res.status(500).json(err);
     };
 });
+
+
 
 module.exports = router;
