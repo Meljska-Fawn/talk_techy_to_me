@@ -4,7 +4,7 @@
   {{#each posts as |post|}}
   <li class="list-group-item">
     <h2><a href="/post/{{id}}">{{title}}</a></h2>
-    <span>Created on {{format_date date_created}}</span>
+    <span>Created by {{user.username}} on {{format_date date_created}}</span>
   </li>
   {{/each}}
 </ul>

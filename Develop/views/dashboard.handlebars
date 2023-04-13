@@ -2,7 +2,7 @@
 <section>
     <ol>
         {{#each posts as |post| }}
-        <li class='row'>
+        <div class='row'>
             <article class='col-12'>
                 <div class="card" style="width: 50rem;">
                     <div class="card-body">
@@ -17,7 +17,7 @@
                             {{#each comments as |comment|}}
                             <li class="list-group-item">
                                 <p>{{comment.content}}</p>
-                                <p>By {{post.user.username}} on {{format_date comment.date_created}}</p>
+                                <p>By {{comment.user.username}} on {{format_date comment.date_created}}</p>
                             </li>
                             {{/each}}
                         </ul>
@@ -27,20 +27,22 @@
                 <p>No comments yet.</p>
                 {{/if}}
             </article>
-        </li>
+        </div>
         {{/each}}
     </ol>
     </div>
 </section>
 <div id='post-btn-div' class="row d-flex justify-content-center" style="width: 50rem;">
     <div class="col-4">
-        <a href='/dashboard/newpost'><button type='button' class="btn btn-info" id='post-btn'>Create a New Post</button></a>
+        <a href='/dashboard/newpost'><button type='button' class="btn btn-info" id='post-btn'>Create a New
+                Post</button></a>
     </div>
 </div>
 {{else}}
 <div id='post-btn-div' class="row d-flex justify-content-center" style="width: 50rem;">
     <div class="col-4">
-        <a href='/dashboard/newpost'><button type='button' class="btn btn-info" id='post-btn'>Create a New Post</button></a>
+        <a href='/dashboard/newpost'><button type='button' class="btn btn-info" id='post-btn'>Create a New
+                Post</button></a>
     </div>
 </div>
 {{/if}}

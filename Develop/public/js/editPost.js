@@ -3,6 +3,7 @@ const editFormHandler = async (event) => {
 
     const title = document.querySelector('#edit-title-input').value.trim();
     const content = document.querySelector('#edit-post-content-input').value.trim();
+    const id = event.target.getAttribute('data-id');
 
     if (title && content) {
         const response = await fetch(`/api/posts/${id}`, {

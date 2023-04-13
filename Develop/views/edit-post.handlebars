@@ -1,4 +1,4 @@
-<form id='edit-post-form'>
+<form id='edit-post-form' data-id="{{post.id}}">
     <div class='row'>
         <div id='edit-post-header' class="col-10">
             <h2>Edit Post</h2>
@@ -19,10 +19,10 @@
                 form='edit-post-form'>{{post.content}}</textarea>
         </div>
         <div class="col-10">
-            <button type='submit' id='update-post-btn'>Update Post</button>
+            <button type='submit' id='update-post-btn' >Update Post</button>
         </div>
-        <div class="col-10">
-            <button type='button' id='delete-post-btn'>Delete</button>
+        <div>
+            <button type='button' id='delete-post-btn' data-id="{{post.id}}">Delete</button>
         </div>
     </div>
 </form>
