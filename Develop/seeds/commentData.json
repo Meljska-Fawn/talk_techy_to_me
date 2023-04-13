@@ -6,8 +6,8 @@
     },
     {
         "content": "I disagree with your point about...",
-        "user_id": 2,
-        "post_id": 1
+        "user_id": 4,
+        "post_id": 4
     },
     {
         "content": "Thanks for sharing this information.",
@@ -17,7 +17,7 @@
     {
         "content": "I found this post very helpful.",
         "user_id": 2,
-        "post_id": 2
+        "post_id": 6
     },
     {
         "content": "Looking forward to reading more from you.",
@@ -27,16 +27,16 @@
     {
         "content": "Your writing style is really engaging.",
         "user_id": 3,
-        "post_id": 3
+        "post_id": 5
     },
     {
         "content": "I can relate to your experience in this post.",
-        "user_id": 2,
-        "post_id": 4
+        "user_id": 4,
+        "post_id": 8
     },
     {
         "content": "I appreciate your honesty.",
         "user_id": 1,
-        "post_id": 4
+        "post_id": 7
     }
 ]

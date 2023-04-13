@@ -5,14 +5,14 @@ const signupFormHandler = async (event) => {
     const password = document.querySelector('#password-signup').value.trim();
 
     if (username && password) {
-        const response = await fetch('/api/users', {
+        const response = await fetch('/api/users/signup', {
             method: 'POST',
             body: JSON.stringify({ username, password }),
             headers: { 'Content-Type': 'application/json' },
         });
 
         if (response.ok) {
-            document.location.replace('/homepage'); // it's looking for / in the homeroutes to know where to go to next
+            document.location.replace('/'); // it's looking for / in the homeroutes to know where to go to next
         } else {
             alert('Failed to sign up.');
         }

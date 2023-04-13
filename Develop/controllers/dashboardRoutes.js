@@ -3,43 +3,50 @@ const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Get all post with comments
-router.get('/', withAuth, async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
     try {
-        const postsData = await Post.findAll(req.session.user.id, { attributes: [ 'id', 'title', 'content', 'date_created' ]},
-            {
-            include: [
-                {
-                model: User,
-                attributes: ['username']
-            },
-            {
-                model: Comment,
-                attributes: ['content', 'date_created'],
-                include: {
-                    model: User,
-                    attribute: ['username']
-                }
-            }],
-            order: [['date_created', 'DESC']],
-        });
+        const postsData = await Post.findAll( {
+            where: {
+                user_id: req.session.id
+            }
+        }); 
+        // { attributes: [ 'id', 'title', 'content', 'date_created' ]},
+        //     {
+        //     include: [
+        //         {
+        //         model: User,
+        //         attributes: ['username']
+        //     },
+        //     {
+        //         model: Comment,
+        //         attributes: ['content', 'date_created'],
+        //         include: {
+        //             model: User,
+        //             attribute: ['username']
+        //         }
+        //     }],
+        //     order: [['date_created', 'DESC']],
+        // });
 
         const posts = postsData.get({ plain: true });
 
-        res.render('dashboard', { ...posts });
+        res.render('dashboard', { ...posts, logged_in: true });
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 });
 
 router.get('/edit/:id', withAuth, async (req, res) => {
     try {
-        const postData = await Post.findbyPk(req.params.id, {
+        const postData = await Post.findByPk(req.params.id, {
             include: [
                 {
                     model: User,
                     attributes: ['username'],
                 }]
         });
+
         if (!postData) {
             res.status(404).json({ message: 'No post found with this id.' });
             return;
@@ -54,8 +61,8 @@ router.get('/edit/:id', withAuth, async (req, res) => {
     }
 });
 
-router.get('/new-post', withAuth, (req, res) => {
-    res.render('new-post', {logged_In: true})
+router.get('/newpost', withAuth, (req, res) => {
+    res.render('new-post', { logged_in: true });
 });
 
 module.exports = router;

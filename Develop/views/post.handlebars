@@ -1,9 +1,9 @@
 <div class="text-center">
-    <h1>{{post.title}}</h1>
-    <h2>Posted by {{post.user.username}} on {{format_date post.date_created}}</h2>
-    <p>{{post.content}}</p>
+    <h1>{{title}}</h1>
+    <h2>Posted by {{user.username}} on {{format_date date_created}}</h2>
+    <p>{{content}}</p>
     <p>
-        <button class="btn btn-primary"><a href="./comment.handlebars">Leave a Comment</a></button>
+        <button class="btn btn-primary"><a href="/comment">Leave a Comment</a></button>
     </p>
 
     <h2>Comments</h2>
@@ -12,8 +12,7 @@
         {{#each comments as |comment|}}
         <li>
             <p>{{comment.content}}</p>
-            <p>{{format_date comment.date_created}}</p>
-            <p>By: {{post.user.username}}</p>
+            <p>By {{comment.user.username}} on {{format_date comment.date_created}}</p>
         </li>
         {{/each}}
     </ul>
@@ -22,4 +21,4 @@
     {{/if}}
 </div>
 
-<script src="./js/addComment.js"></script>
+<script src="/js/addComment.js"></script>

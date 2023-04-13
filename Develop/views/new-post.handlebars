@@ -1,27 +1,23 @@
-<form id='new-post-form'>
-    <div class="row">
-        <div id='new-post-header' class="col-10">
+<form id='new-post-form' style="width: 45rem;">
+    <div class="row d-flex justify-content-center">
+        <div id='new-post-header' class="d-flex justify-content-center">
             <h2>Create New Post</h2>
         </div>
     </div>
-    <div id='new-post-div' class="row border">
-        <div class="col-10">
-            <label for='title-input'>Title</label>
+    <div id='new-post-div' class="row d-flex align-items-center justify-content-center" style="width: 45rem;">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+            <input type="text" class="form-control" id='title-input' aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default">
         </div>
-        <div class="col-10">
-            <input placeholder='Enter title here...' type='text' id='title-input' />
+        <div class="input-group" style="height: 15rem;">
+            <span class="input-group-text">What would you like to say?</span>
+            <textarea id='post-content-input' class="form-control" aria-label="With textarea"></textarea>
         </div>
-        <div class="col-10">
-            <label for='post-content-input'>Content</label>
-        </div>
-        <div class="col-10">
-            <textarea id='post-content-input' name='post-content-input' form='new-post-form'
-                placeholder="Enter content here..."></textarea>
-        </div>
-        <div class="col-10">
-            <button type='submit' id='create-new-post'>Create</button>
+        <div class="col-4">
+            <button type='submit' class="btn btn-info" id='create-new-post'>Submit</button>
         </div>
     </div>
 </form>
 
-<script src="/js/add-post.js"></script>
+<script src="/js/addPost.js"></script>
