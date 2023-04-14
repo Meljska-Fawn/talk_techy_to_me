@@ -1,0 +1,13 @@
+{{#if posts.length}}
+<ul class="list-group list-group-flush my-5">
+  {{!-- needs to match const variable in postRoutes.js --}}
+  {{#each posts as |post|}}
+  <li class="list-group-item">
+    <h2><a href="/post/{{id}}">{{title}}</a></h2>
+    <span>Created by {{user.username}} on {{format_date date_created}}</span>
+  </li>
+  {{/each}}
+</ul>
+{{else}}
+<p>No posts yet.</p>
+{{/if}}

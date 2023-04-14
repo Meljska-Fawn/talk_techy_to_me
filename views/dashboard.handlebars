@@ -1,0 +1,46 @@
+{{#if posts.length }}
+<div class="container">
+    <div class="row">
+        <div id='post-btn-div' class="d-flex justify-content-start mt-5">
+            <div class="">
+                <a href='/dashboard/newpost'><button type='button' class="btn btn-info" id='post-btn'>Create a New
+                        Post</button></a>
+            </div>
+        </div>
+        {{else}}
+        <div id='post-btn-div' class="d-flex justify-content-end">
+            <div class="">
+                <a href='/dashboard/newpost'><button type='button' class="btn btn-info" id='post-btn'>Create a New
+                        Post</button></a>
+            </div>
+        </div>
+        {{/if}}
+        <div class='mt-5'>
+            {{#each posts as |post| }}
+            <div class="card">
+                <div class="card-body mx-2">
+                    <h4 class="card-title my-2"><a href='/dashboard/edit/{{id}}'>{{title}}</a></h4>
+                    <p class="my-2">Created on {{format_date date_created}}</p>
+                    <p class="card-text my-2">{{content}}</p>
+                </div>
+                <div class="card-body mx-2">
+                    <h5 class="card-subtitle">Comments</h5>
+                    {{#if comments.length}}
+                    <ul class="list-group list-group-flush">
+                        {{#each comments as |comment|}}
+                        <li class="list-group-item">
+                            <p>{{comment.content}}</p>
+                            <p class="text-body-secondary">{{comment.user.username}} on {{format_date
+                                comment.date_created}}</p>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+            {{else}}
+            <p>No comments yet.</p>
+            {{/if}}
+        </div>
+    </div>
+    {{/each}}
+</div>
